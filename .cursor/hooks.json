@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "goalGuard": {
+    "max_session_generations": 10,
+    "max_session_tokens": null,
+    "measure_native_session_tokens": false,
+    "max_plan_percent": null,
+    "max_idle_seconds": 3600,
+    "max_goal_runtime_seconds": null,
+    "deny_fast": false,
+    "deny_max_mode": false,
+    "max_context_tokens": null,
+    "require_model_metadata_for_goal": true,
+    "authorization": null,
+    "native_database": null,
+    "usage_source": null,
+    "require_usage_for_goal": true,
+    "usage_max_age_seconds": 120,
+    "alert_window_seconds": 900
+  },
+  "hooks": {
+    "beforeSubmitPrompt": [
+      {"command": "python .cursor/goal_guard.py", "timeout": 3}
+    ],
+    "preToolUse": [
+      {"command": "python .cursor/goal_guard.py", "timeout": 3}
+    ],
+    "afterAgentResponse": [
+      {"command": "python .cursor/goal_guard.py", "timeout": 3}
+    ],
+    "stop": [
+      {"command": "python .cursor/goal_guard.py", "timeout": 3}
+    ]
+  }
+}
